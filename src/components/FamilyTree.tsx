@@ -24,7 +24,7 @@ const FamilyTree: React.FC = () => {
   return (
     <div className={`container mx-auto p-8 transition-colors duration-500 ${isDarkMode ? 'bg-black text-black' : 'bg-transparent text-black'}`}>
       <div className="flex justify-between items-center mb-6">
-        <h1 className={`text-2xl font-bold text-center duration-500 ${isDarkMode ? 'text-white': 'text-black'}`}>Family Tree</h1>
+        <h1 className={`text-2xl font-bold text-center duration-500 text-white`}>Family Tree</h1>
         <button
           onClick={toggleDarkMode}
           className="bg-gray-700 text-white px-4 py-2 rounded-md hover:bg-gray-600 transition-colors duration-300 ease-in-out"
