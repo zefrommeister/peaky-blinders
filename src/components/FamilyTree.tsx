@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import FamilyMember from './FamilyMember';
+import Transition from '../components/Transition';
 
 const FamilyTree: React.FC = () => {
   const [showExtendedFamily, setShowExtendedFamily] = useState(false);
@@ -32,13 +33,13 @@ const FamilyTree: React.FC = () => {
           {isDarkMode ? 'Light Mode' : 'Dark Mode'}
         </button>
       </div>
-
-      <div className="grid grid-cols-3 gap-6">
-        <FamilyMember name="Tommy Shelby" relation="Head of Family" imageUrl="/images/tommy-shelby.jpg" />
-        <FamilyMember name="Arthur Shelby" relation="Elder Brother" imageUrl="/images/arthur-shelby.jpg" />
-        <FamilyMember name="John Shelby" relation="Younger Brother" imageUrl="/images/john-shelby.jpg" />
-      </div>
-
+      <Transition>
+        <div className="grid grid-cols-3 gap-6">
+          <FamilyMember name="Tommy Shelby" relation="Head of Family" imageUrl="/images/tommy-shelby.jpg" />
+          <FamilyMember name="Arthur Shelby" relation="Elder Brother" imageUrl="/images/arthur-shelby.jpg" />
+          <FamilyMember name="John Shelby" relation="Younger Brother" imageUrl="/images/john-shelby.jpg" />
+        </div>
+      </Transition>
       <div className="text-center mt-8">
         <button
           onClick={() => setShowExtendedFamily(!showExtendedFamily)}
