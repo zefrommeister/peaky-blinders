@@ -1,67 +1,44 @@
 "use client";
 
-import React, { useState, useEffect } from 'react';
+import React, {useEffect } from 'react';
 import FamilyMember from './FamilyMember';
 import Transition from '../components/Transition';
 
 const FamilyTree: React.FC = () => {
-  const [showExtendedFamily, setShowExtendedFamily] = useState(false);
-  const [isDarkMode, setIsDarkMode] = useState(false);
 
-  // Check and apply initial dark mode state
   useEffect(() => {
-    const darkModePreference = window.matchMedia("(prefers-color-scheme: dark)").matches;
-    if (darkModePreference) {
-      setIsDarkMode(true);
-      document.documentElement.classList.add("dark");
-    }
+    // Set the background color of the entire page to black
+    document.body.style.backgroundColor = 'black';
+    document.body.style.color = 'white';
+
+    // Clean up: Reset background color when component unmounts
+    return () => {
+      document.body.style.backgroundColor = '';
+      document.body.style.color = '';
+    };
   }, []);
 
-  const toggleDarkMode = () => {
-    setIsDarkMode(!isDarkMode);
-    document.documentElement.classList.toggle('dark');
-  };
-
   return (
-    <div className={`container mx-auto p-8 transition-colors duration-500 ${isDarkMode ? 'bg-black text-black' : 'bg-transparent text-black'}`}>
+    <div className="container mx-auto p-8 transition-colors duration-500 bg-black text-white min-h-screen">
       <div className="flex justify-between items-center mb-6">
-        <h1 className={`text-2xl font-bold text-center duration-500 text-white`}>Family Tree</h1>
-        <button
-          onClick={toggleDarkMode}
-          className="bg-gray-700 text-white px-4 py-2 rounded-md hover:bg-gray-600 transition-colors duration-300 ease-in-out"
-        >
-          {isDarkMode ? 'Light Mode' : 'Dark Mode'}
-        </button>
+        <h1 className="text-2xl font-bold text-center">Family Tree</h1>
       </div>
       <Transition>
-        <div className="grid grid-cols-3 gap-6">
-          <FamilyMember name="Tommy Shelby" relation="Head of Family" imageUrl="/images/tommy-shelby.jpg" />
-          <FamilyMember name="Arthur Shelby" relation="Elder Brother" imageUrl="/images/arthur-shelby.jpg" />
-          <FamilyMember name="John Shelby" relation="Younger Brother" imageUrl="/images/john-shelby.jpg" />
+        <div className="grid grid-cols-4 gap-4">
+          <FamilyMember name="Tommy Shelby" relation="Head of Family" imageUrl="/images/tommy-shelby.jpg" charstatus="Alive" />
+          <FamilyMember name="Arthur Shelby" relation="Elder Brother" imageUrl="/images/arthur-shelby.jpg" charstatus="Alive" />
+          <FamilyMember name="John Shelby" relation="Younger Brother" imageUrl="/images/john-shelby.jpg" charstatus="Deceased" />
+          <FamilyMember name="Grace Shelby" relation="Ex-wife of Thomas Shelby" imageUrl="/images/grace-shelby.jpg" charstatus="Deceased" />
+          <FamilyMember name="Polly Gray" relation="Aunt" imageUrl="/images/polly-gray.jpg" charstatus="Deceased"/>
+          <FamilyMember name="Aberama Gold" relation="Husband of Polly Gray" imageUrl="/images/aberama-gold.jpg" charstatus="Deceased"/>
+          <FamilyMember name="Michael Gray" relation="Son of Polly Gray" imageUrl="/images/michael-gray.jpg" charstatus="Deceased"/>
+          <FamilyMember name="Ada Thorne" relation="Sister" imageUrl="/images/ada-thorne.jpg" charstatus="Alive"/>
+          <FamilyMember name="Finn Shelby" relation="Youngest Brother" imageUrl="/images/finn-shelby.jpg" charstatus="MIA"/>
+          <FamilyMember name="Elizabeth Stark" relation="Wife of Thomas Shelby" imageUrl="/images/lizzie-stark.jpg" charstatus="Alive"/>
+          <FamilyMember name="Johnny Dogs" relation="Close Friend of Thomas Shelby" imageUrl="/images/johnny-dogs.jpg" charstatus="Alive"/>
+          <FamilyMember name="Isiah Jesus" relation="Close Friend of Finn Shelby" imageUrl="/images/isiah.jpg" charstatus="Alive"/>
         </div>
       </Transition>
-      <div className="text-center mt-8">
-        <button
-          onClick={() => setShowExtendedFamily(!showExtendedFamily)}
-          className="bg-blue-500 text-white px-4 py-2 rounded-md transition-transform duration-300 ease-in-out transform hover:scale-105"
-        >
-          {showExtendedFamily ? 'Hide Extended Family' : 'Show Extended Family'}
-        </button>
-      </div>
-
-      <div
-        className={`grid grid-cols-3 gap-6 mt-6 transition-opacity duration-700 ease-in-out ${
-          showExtendedFamily ? 'opacity-100' : 'opacity-0 pointer-events-none'
-        }`}
-      >
-        {showExtendedFamily && (
-          <>
-            <FamilyMember name="Polly Gray" relation="Aunt" imageUrl="/images/polly-gray.jpg" />
-            <FamilyMember name="Ada Thorne" relation="Sister" imageUrl="/images/ada-thorne.jpg" />
-            <FamilyMember name="Finn Shelby" relation="Youngest Brother" imageUrl="/images/finn-shelby.jpg" />
-          </>
-        )}
-      </div>
     </div>
   );
 };

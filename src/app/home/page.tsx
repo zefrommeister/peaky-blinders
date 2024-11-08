@@ -6,7 +6,6 @@ import { motion } from 'framer-motion';
 import AnimatedBackground from '../../components/AnimatedBackground';
 import NavigationBar from '../../components/NavigationBar';
 import Transition from '@/components/Transition';
-import { Helmet, HelmetProvider } from "react-helmet-async";
 
 const fadeIn = keyframes`
   from {
@@ -38,21 +37,8 @@ const Title = styled(motion.h1)`
   font-family: 'SourceCodePro', sans-serif;
 `;
 
-const Subtitle = styled(motion.h2)`
-  font-size: 1.8rem;
-  color: #ffffff;
-  margin-bottom: 20px;
-  animation: ${fadeIn} 4s ease-in-out;
-  font-family: 'GeistMono', sans-serif;
-`;
-
 const Home = () => {
   return (
-    <HelmetProvider>
-      <Helmet>
-        <title>Welcome to the Garrison</title>
-        <meta name="description" content="Home of the Peaky Blinders" />
-      </Helmet>
 
       <AnimatedBackground>
         <Transition>
@@ -66,18 +52,9 @@ const Home = () => {
             >
               The Peaky Blinders
             </Title>
-
-            <Subtitle
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 1, duration: 3 }}
-            >
-              Beware... the red right hand....
-            </Subtitle>
           </HomeContainer>
         </Transition>
       </AnimatedBackground>
-    </HelmetProvider>
   );
 };
 
