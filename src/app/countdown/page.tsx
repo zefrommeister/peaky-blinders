@@ -3,6 +3,11 @@
 import React, { useEffect } from 'react';
 import NavigationBar from '../../components/NavigationBar';
 import Transition from '@/components/Transition';
+import CountdownTimer from '@/components/countdown';
+import { isDateInPast } from '../../components/helper';
+import styles from './page.module.css';
+
+const countdownDate = new Date('2026-01-01T00:00:00Z');
 
 export default function Countdown() {
   useEffect(() => {
@@ -20,10 +25,15 @@ export default function Countdown() {
   return (
     <Transition>
       <NavigationBar />
-      <div className="text-white min-h-screen flex flex-col items-center justify-center">
-        <h1 className="text-3xl font-bold mb-4">Movie Countdown</h1>
-        <p>This page will contain the movie countdown information.</p>
-      </div>
+        <main className={styles.main}>
+        {
+          !isDateInPast(countdownDate) &&
+          <CountdownTimer
+            deadline={countdownDate}
+            title={'Possible Movie Release Date'}
+          />
+        }
+      </main>
     </Transition>
   );
 }
