@@ -6,3 +6,23 @@
     /* padding: 6rem; */
     min-height: 100vh;
   }
+
+  .main {
+    display: flex; /* Make the main container a flexbox */
+    flex-direction: column; /* Stack children vertically */
+    justify-content: center; /* Center content vertically */
+    align-items: center; /* Center content horizontally */
+    min-height: 100vh; /* Make the container take the full height of the viewport */
+    text-align: center; /* Ensure all text is centered */
+  }
+
+  .countdown-timer {
+    font-size: 3rem; /* Adjust the size of the countdown digits */
+    margin-bottom: 1rem; /* Add spacing below the countdown digits */
+  }
+  
+  .countdown-title {
+    font-size: 1.5rem; /* Adjust the size of the title */
+    margin-bottom: 2rem; /* Add spacing between title and countdown digits */
+  }
+  

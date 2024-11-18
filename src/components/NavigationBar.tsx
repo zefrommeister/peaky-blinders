@@ -17,14 +17,14 @@ import {
         <NavigationMenu>
             <NavigationMenuList className="flex justify-end space-x-4">
                 <NavigationMenuItem>
-                    <Link href="/home" legacyBehavior passHref>
+                    <Link href="/" legacyBehavior passHref>
                     <NavigationMenuLink className={`bg-transparent text-white p-2 rounded-md ${navigationMenuTriggerStyle()}`}>
                         Home
                     </NavigationMenuLink>
                     </Link>
                 </NavigationMenuItem>
                 <NavigationMenuItem>
-                    <Link href="/" legacyBehavior passHref>
+                    <Link href="/characters" legacyBehavior passHref>
                     <NavigationMenuLink className={`bg-transparent text-white p-2 rounded-md ${navigationMenuTriggerStyle()}`}>
                         Characters
                     </NavigationMenuLink>
